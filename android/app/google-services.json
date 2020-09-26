@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "9236138537",
+    "firebase_url": "https://akfbdemo.firebaseio.com",
+    "project_id": "akfbdemo",
+    "storage_bucket": "akfbdemo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:9236138537:android:ee6f5207b6e51f6033ea38",
+        "android_client_info": {
+          "package_name": "com.example.akfbdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "9236138537-s807fh1tv7n3g1r56rk72e413e6pvlq6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxGkrcDlGX3Nn3pTxYzPOvJTQ2QMweJcg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "9236138537-s807fh1tv7n3g1r56rk72e413e6pvlq6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
