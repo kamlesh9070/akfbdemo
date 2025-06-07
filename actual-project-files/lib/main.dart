@@ -17,13 +17,13 @@ Item _itemForMessage(Map<String, dynamic> message) {
 }
 
 class Item {
-  Item({this.itemId});
   final String itemId;
+  Item({required this.itemId});
 
-  StreamController<Item> _controller = StreamController<Item>.broadcast();
+  final StreamController<Item> _controller = StreamController<Item>.broadcast();
   Stream<Item> get onChanged => _controller.stream;
 
-  String _status;
+  String _status = "";
   String get status => _status;
   set status(String value) {
     _status = value;
@@ -51,32 +51,35 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-  Item _item;
-  StreamSubscription<Item> _subscription;
+  Item? _item;
+  late StreamSubscription<Item> _subscription;
 
   @override
   void initState() {
     super.initState();
-    _item = _items[widget.itemId];
-    _subscription = _item.onChanged.listen((Item item) {
-      if (!mounted) {
-        _subscription.cancel();
-      } else {
-        setState(() {
-          _item = item;
-        });
-      }
-    });
+    final item = _items[widget.itemId];
+    if (item != null) {
+      _item = item;
+      _subscription = _item!.onChanged.listen((Item item) {
+        if (!mounted) {
+          _subscription.cancel();
+        } else {
+          setState(() {
+            _item = item;
+          });
+        }
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Item ${_item.itemId}"),
+        title: Text("Item ${_item?.itemId}"),
       ),
       body: Material(
-        child: Center(child: Text("Item status: ${_item.status}")),
+        child: Center(child: Text("Item status: ${_item?.status}")),
       ),
     );
   }
