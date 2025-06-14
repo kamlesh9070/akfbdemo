@@ -1,0 +1,42 @@
+package org.dadabhagwan.AKonnect;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class ImageDownload_Async {
+
+  private static final String TAG = "ImageDownload_Async";
+  private static final ExecutorService executor = Executors.newSingleThreadExecutor();
+
+  public interface ImageDownloadCallback {
+    void onSuccess(Bitmap bitmap);
+    void onError(Exception e);
+  }
+
+  public static void getDownloadedImageAsync(String strUrl, ImageDownloadCallback callback) {
+    executor.execute(() -> {
+      try {
+        URL url = new URL(strUrl);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.connect();
+        InputStream inputStream = connection.getInputStream();
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+        Bitmap bitmap = BitmapFactory.decodeStream(bufferedInputStream);
+        new Handler(Looper.getMainLooper()).post(() -> callback.onSuccess(bitmap));
+      } catch (Exception e) {
+        Log.e(TAG, "Image download failed: " + strUrl, e);
+        new Handler(Looper.getMainLooper()).post(() -> callback.onError(e));
+      }
+    });
+  }
+}

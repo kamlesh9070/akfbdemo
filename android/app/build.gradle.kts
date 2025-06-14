@@ -47,7 +47,7 @@ dependencies {
     // Declare the dependencies for the desired Firebase products without specifying versions
     // For example, declare the dependencies for Firebase Authentication and Cloud Firestore
     implementation("com.google.firebase:firebase-messaging")
-
+    implementation("com.google.code.gson:gson:2.8.6")
     // For AGP 7.4+
     coreLibraryDesugaring ("com.android.tools:desugar_jdk_libs:2.1.5")    // For AGP 7.3
     // coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.3'

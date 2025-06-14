@@ -9,7 +9,7 @@ import java.util.HashMap
 
 class MyFirebaseMessagingReceiver : BroadcastReceiver() {
     companion object {
-        private const val TAG = "FirebaseMessagingReceiver"
+        private const val TAG = "MyFirebaseMessagingReceiver"
         // Consider using a thread-safe collection if accessed from multiple threads concurrently.
         // For simplicity, sticking to HashMap as in the original Java code.
         val notifications = HashMap<String?, RemoteMessage>()

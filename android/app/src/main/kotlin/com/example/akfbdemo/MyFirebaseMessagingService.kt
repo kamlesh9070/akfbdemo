@@ -9,16 +9,16 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
 
-        Log.d("FCM", "From: ${remoteMessage.from}")
+        Log.d("MyFCM", "From: ${remoteMessage.from}")
 
         // Handle data payload
         if (remoteMessage.data.isNotEmpty()) {
-            Log.d("FCM", "Message data: ${remoteMessage.data}")
+            Log.d("MyFCM", "Message data: ${remoteMessage.data}")
         }
 
         // Handle notification payload
         remoteMessage.notification?.let {
-            Log.d("FCM", "Message body: ${it.body}")
+            Log.d("MyFCM", "Message body: ${it.body}")
         }
     }
 
